@@ -17,44 +17,68 @@
         .header {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             border-bottom: 3px solid #cd040b;
-            padding: 48px 24px 40px;
+            padding: 24px 24px 20px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .header .accent { color: #cd040b; }
 
         .header p {
-            font-size: 1.05rem;
+            font-size: 0.9rem;
             color: #94a3b8;
             max-width: 600px;
             margin: 0 auto;
         }
 
+        .nav-bar {
+            background: #111120;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .nav-tab {
+            padding: 12px 28px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-tab:hover { color: #fff; }
+        .nav-tab.active { color: #fff; border-bottom-color: #cd040b; }
+
         .container {
-            max-width: 960px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 24px 60px;
+            padding: 32px 24px 60px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
         .card {
             background: #141422;
             border: 1px solid #1e293b;
             border-radius: 12px;
-            padding: 28px 28px 24px;
+            padding: 22px 22px 20px;
             transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
             display: flex;
             flex-direction: column;
@@ -70,13 +94,13 @@
 
         .card-tag {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             width: fit-content;
         }
 
@@ -89,39 +113,42 @@
         .tag-skills   { background: #2e1a1a; color: #fca5a5; }
 
         .card h2 {
-            font-size: 1.25rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             line-height: 1.3;
         }
 
         .card p {
-            font-size: 0.92rem;
+            font-size: 0.82rem;
             color: #94a3b8;
-            line-height: 1.6;
+            line-height: 1.55;
             flex-grow: 1;
         }
 
         .card-footer {
-            margin-top: 18px;
+            margin-top: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             color: #cd040b;
             font-weight: 500;
         }
 
         .card-footer svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             transition: transform 0.2s;
         }
 
         .card:hover .card-footer svg {
             transform: translateX(4px);
         }
+
+        .section { display: none; }
+        .section.active { display: block; }
 
         .footer {
             text-align: center;
@@ -131,9 +158,13 @@
             border-top: 1px solid #1e293b;
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 560px) {
             .grid { grid-template-columns: 1fr; }
-            .header h1 { font-size: 1.6rem; }
+            .header h1 { font-size: 1.4rem; }
+            .nav-tab { padding: 10px 16px; font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -144,99 +175,96 @@
     <p>Interactive dashboards for ILEC fiber build-out planning, CAPEX modeling, and network strategy</p>
 </div>
 
+<div class="nav-bar">
+    <a class="nav-tab active" onclick="showTab('dashboards', this)">Dashboards</a>
+    <a class="nav-tab" href="https://doneagleolsen.github.io/claude-skills/">Claude Code Skills Library</a>
+</div>
+
 <div class="container">
-    <div class="grid">
+    <div id="dashboards" class="section active">
+        <div class="grid">
 
-        <a class="card" href="https://doneagleolsen.github.io/BI-Oblig-Disc-Build/">
-            <span class="card-tag tag-capex">CAPEX &middot; Build Priority</span>
-            <h2>BI Obligation &amp; Discretionary Build</h2>
-            <p>Beyond Infinity output segmented by obligation and discretionary addresses. Wire center selection with CAPEX swim lanes and build priority ranking.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/BI-Oblig-Disc-Build/">
+                <span class="card-tag tag-capex">CAPEX &middot; Build Priority</span>
+                <h2>BI Obligation &amp; Discretionary Build</h2>
+                <p>Beyond Infinity output segmented by obligation and discretionary addresses. Wire center selection with CAPEX swim lanes and build priority ranking.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/Beyond-Infinity-IRR-Analysis/">
-            <span class="card-tag tag-irr">IRR &middot; Revenue Model</span>
-            <h2>Beyond Infinity IRR Analysis</h2>
-            <p>2.3M non-OFS base addresses across the full ILEC footprint. BI CAPEX (CPO_PRED) paired with DCF revenue modeling using Beyond Infinity methodology.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/Beyond-Infinity-IRR-Analysis/">
+                <span class="card-tag tag-irr">IRR &middot; Revenue Model</span>
+                <h2>Beyond Infinity IRR Analysis</h2>
+                <p>2.3M non-OFS base addresses across the full ILEC footprint. BI CAPEX (CPO_PRED) paired with DCF revenue modeling using Beyond Infinity methodology.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/ODN-Build-Priority/">
-            <span class="card-tag tag-maps">Executive &middot; Deck</span>
-            <h2>ODN Build Priority</h2>
-            <p>11-slide interactive executive deck for FiOS ODN build priority analysis. Includes ILEC basemap, swim lanes, NT1/NT2 breakdowns, and wire center rankings.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/ODN-Build-Priority/">
+                <span class="card-tag tag-maps">Executive &middot; Deck</span>
+                <h2>ODN Build Priority</h2>
+                <p>11-slide interactive executive deck for FiOS ODN build priority analysis. ILEC basemap, swim lanes, NT1/NT2 breakdowns, and wire center rankings.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/BI-Top-25-Prem-Passed/">
-            <span class="card-tag tag-capex">BI &middot; Top 25</span>
-            <h2>BI Top 25 Prem Passed</h2>
-            <p>Top 25 wire center build candidates ranked by Beyond Infinity scoring methodology. Priority analysis for near-term ILEC fiber deployment.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/BI-Top-25-Prem-Passed/">
+                <span class="card-tag tag-capex">BI &middot; Top 25</span>
+                <h2>BI Top 25 Prem Passed</h2>
+                <p>Top 25 wire center build candidates ranked by Beyond Infinity scoring. Executive deck and interactive geographic footprint map.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/FiOS-590K-Plan/">
-            <span class="card-tag tag-plan">590K &middot; Cluster Map</span>
-            <h2>2026 FiOS 590K Plan</h2>
-            <p>Interactive Leaflet map of the 2026 FiOS 590K build plan. 5,607 clusters across 647 wire centers with filtering by region, CLLI, and bucket.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/FiOS-590K-Plan/">
+                <span class="card-tag tag-plan">590K &middot; Cluster Map</span>
+                <h2>2026 FiOS 590K Plan</h2>
+                <p>Interactive Leaflet map of the 2026 FiOS 590K build plan. 5,607 clusters across 647 wire centers with filtering by region, CLLI, and bucket.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/Ligonier-Analysis/">
-            <span class="card-tag tag-ligonier">Ligonier &middot; Case Study</span>
-            <h2>Ligonier Analysis</h2>
-            <p>Build scenario modeling (Full / Copper-Truncated / Cherry Pick) and BI vs DOC cost model comparison for Ligonier wire center.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/Ligonier-Analysis/">
+                <span class="card-tag tag-ligonier">Ligonier &middot; Case Study</span>
+                <h2>Ligonier Analysis</h2>
+                <p>Build scenario modeling (Full / Copper-Truncated / Cherry Pick) and BI vs DOC cost model comparison for Ligonier wire center.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/2027--ODN-Focused-Build-Priority-Map/">
-            <span class="card-tag tag-maps">2027 &middot; ODN Map</span>
-            <h2>2027 ODN Focused Build Priority Map</h2>
-            <p>Interactive Leaflet map showing 2027 ODN build priority with MDU density and aerial construction analysis across ILEC wire centers.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/2027--ODN-Focused-Build-Priority-Map/">
+                <span class="card-tag tag-maps">2027 &middot; ODN Map</span>
+                <h2>2027 ODN Focused Build Priority Map</h2>
+                <p>Interactive Leaflet map showing 2027 ODN build priority with MDU density and aerial construction analysis across ILEC wire centers.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/vz_analytics/">
-            <span class="card-tag tag-analytics">Analytics &middot; Tools</span>
-            <h2>VZ Analytics</h2>
-            <p>Supporting analytics tools and data visualizations for broadband network engineering and planning workflows.</p>
-            <div class="card-footer">
-                Open Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
+            <a class="card" href="https://doneagleolsen.github.io/vz_analytics/">
+                <span class="card-tag tag-analytics">Analytics &middot; Tools</span>
+                <h2>VZ Analytics</h2>
+                <p>Supporting analytics tools and data visualizations for broadband network engineering and planning workflows.</p>
+                <div class="card-footer">
+                    Open Dashboard
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
 
-        <a class="card" href="https://doneagleolsen.github.io/claude-skills/">
-            <span class="card-tag tag-skills">Claude &middot; Skills</span>
-            <h2>Claude Code Skills Library</h2>
-            <p>Custom slash commands for network planning pipelines, Oracle DB setup, Tableau scraping, email triage, and BI/DOC model comparison. Download and install.</p>
-            <div class="card-footer">
-                Browse Skills
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </div>
-        </a>
-
+        </div>
     </div>
 </div>
 
